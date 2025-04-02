@@ -11,7 +11,7 @@ import appStore from "./utils/appStore";
 import Feed from "./compoments/Feed";
 import Connections from "./compoments/Connections";
 // import Request from "./compoments/Request.jsx";
-import Request from "./compoments/Request.Jsx";
+import Request from "./compoments/Request";
 
 function App() {
   return (
