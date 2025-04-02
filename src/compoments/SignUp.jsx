@@ -1,4 +1,40 @@
+import axios from "axios";
+import { use, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+
 const SignUp = () => {
+  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [LastName, setLastName] = useState("");
+  const [emailID, setEmailID] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [password, setPassword] = useState("");
+  const [about, setAbout] = useState("");
+  const signUphandel = async (e) => {
+  
+    e.preventDefault();
+    console.log("gender",gender)
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/signup",
+        {
+          firstName,
+          LastName,
+          emailID,
+          age,
+          password,
+          about,
+          gender,
+          skills: ["a", "b"],
+        },
+        { withCredentials: true }
+      );
+      navigate("/login");
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
       <div className="hero bg-base-200 min-h-screen">
@@ -19,6 +55,8 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   placeholder="FirstName"
                   className="input input-bordered"
                   required
@@ -31,6 +69,8 @@ const SignUp = () => {
                 <input
                   type="text"
                   placeholder="Last Name"
+                  value={LastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className="input input-bordered"
                   required
                 />
@@ -41,6 +81,8 @@ const SignUp = () => {
                 </label>
                 <input
                   type="email"
+                  value={emailID}
+                  onChange={(e) => setEmailID(e.target.value)}
                   placeholder="email"
                   className="input input-bordered"
                   required
@@ -53,29 +95,32 @@ const SignUp = () => {
                 <input
                   type="number"
                   placeholder="age"
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
                   className="input input-bordered"
                   required
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">About</span>
                 </label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  required
-                />
+                <textarea
+                  className="textarea textarea-bordered"
+                  value={about}
+                  onChange={(e) => setAbout(e.target.value)}
+                  placeholder="About"
+                ></textarea>
               </div>
               <label className="label">
-                  <span className="label-text">Gender</span>
-                </label>
+                <span className="label-text">Gender</span>
+              </label>
               <div className="form-control">
                 <label className="label cursor-pointer">
                   <span className="label-text">Mail</span>
                   <input
                     type="radio"
+                    onChange={(e) => setGender("male")}
                     name="radio-10"
                     className="radio checked:bg-blue-500"
                     defaultChecked
@@ -88,8 +133,8 @@ const SignUp = () => {
                   <input
                     type="radio"
                     name="radio-10"
+                    onChange={(e) => setGender("female")}
                     className="radio checked:bg-secondary"
-                    defaultChecked
                   />
                 </label>
               </div>
@@ -99,17 +144,20 @@ const SignUp = () => {
                   <input
                     type="radio"
                     name="radio-10"
+                    onChange={(e) => setGender("other")}
                     className="radio checked:bg-accent"
-                    defaultChecked
                   />
                 </label>
               </div>
+
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="password"
                   className="input input-bordered"
                   required
@@ -120,9 +168,13 @@ const SignUp = () => {
                   </a>
                 </label>
               </div>
-              <textarea className="textarea textarea-bordered" placeholder="About"></textarea>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Sign Up</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={(e) => signUphandel(e)}
+                >
+                  Sign Up
+                </button>
               </div>
             </form>
           </div>
