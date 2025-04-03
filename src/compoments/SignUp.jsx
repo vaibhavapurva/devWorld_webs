@@ -1,6 +1,7 @@
 import axios from "axios";
 import { use, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/url";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const SignUp = () => {
     console.log("gender",gender)
     try {
       const res = await axios.post(
-        "http://localhost:3000/signup",
+        `${BASE_URL}/signup`,
         {
           firstName,
           LastName,

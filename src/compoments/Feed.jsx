@@ -2,12 +2,13 @@ import { useSelector } from "react-redux"
 import UserCard from "./UserCard"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { BASE_URL } from "../utils/url"
 
 const Feed = () =>{
     const [feed, setFeed] = useState([])
     const feedGet = async() =>{
         try{
-            const res = await axios.get("http://localhost:3000/user/feed?page=2&limit=3",{withCredentials: true})
+            const res = await axios.get(`${BASE_URL}/user/feed?page=2&limit=3`,{withCredentials: true})
             console.log("------",res.data.data)
             setFeed(res.data.data)
 
@@ -19,7 +20,7 @@ const Feed = () =>{
     const handleSendRequest = async(status, id) =>{
         // intersted
         try{
-            const res = await axios.post(`http://localhost:3000/request/send/${status}/${id}`,{},{withCredentials: true})
+            const res = await axios.post(`${BASE_URL}/request/send/${status}/${id}`,{},{withCredentials: true})
             console.log("res",res)
             feedGet()
         }catch(err){

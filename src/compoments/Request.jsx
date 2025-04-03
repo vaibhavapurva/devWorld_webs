@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequest } from "../utils/requestSlice";
+import { BASE_URL } from "../utils/url";
 
 const Request = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Request = () => {
   const requestHandle = async(status, _id) =>{
     //accepted
     try{
-        const res = await axios.post(`http://localhost:3000/request/review/${status}/${_id}`,{},{withCredentials:true})
+        const res = await axios.post(`${BASE_URL}/request/review/${status}/${_id}`,{},{withCredentials:true})
         fetchRequest()
     }catch (err){
         console.log(err)

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UserCard from "./UserCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../utils/url";
 // import { addUser } from "../utils/userSlice";
 
 const Profile = () => {
@@ -26,7 +27,7 @@ useEffect(()=>{
 },[user])
     const profileUpdate = async() =>{
         try{
-            const data = await axios.patch("http://localhost:3000/profile/edit",{firstName,LastName,age,about,gender,photoURL},{withCredentials:true})
+            const data = await axios.patch(`${BASE_URL}/profile/edit`,{firstName,LastName,age,about,gender,photoURL},{withCredentials:true})
             dispatch(addUser(data.data))
         }catch(err) {
             console.log(err.message)
