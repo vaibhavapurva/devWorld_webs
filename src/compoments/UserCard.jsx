@@ -1,6 +1,5 @@
 const UserCard = ({ user,flag,handleSendRequest }) => {
   
-console.log("user",user)
   return (
     <>
       <div className=" justify-items-center m-9">

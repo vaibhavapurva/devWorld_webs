@@ -11,7 +11,7 @@ const Request = () => {
   const fetchRequest = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/user/request/received",
+        `${BASE_URL}/user/request/received`,
         { withCredentials: true }
       );
       console.log(res.data.connectionRequest);
