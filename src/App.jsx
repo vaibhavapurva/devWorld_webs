@@ -12,6 +12,7 @@ import Feed from "./compoments/Feed";
 import Connections from "./compoments/Connections";
 // import Request from "./compoments/Request.jsx";
 import Request from "./compoments/Request";
+import Payment from "./compoments/Payment";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/connections" element={<Connections/>}/>
               <Route path="/request" element={<Request/>}/>
+              <Route path="/payment" element={<Payment/>}/>
             </Route>
           </Routes>
         </BrowserRouter>

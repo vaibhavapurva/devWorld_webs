@@ -23,6 +23,7 @@ const Body = () => {
         navigate("/login")
       }
       console.log(err)
+      navigate("/login") 
     }
   }
   }
