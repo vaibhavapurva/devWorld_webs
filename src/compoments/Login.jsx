@@ -9,7 +9,7 @@ import { BASE_URL } from "../utils/url";
 const Login = () => {
     const navigate = useNavigate(); 
     const [emailID, setEmailId] = useState("vibhu@gmail.com");
-    const [password, setPassword] = useState("Admin@123");
+    const [password, setPassword] = useState("Admin@12");
     const dispatch= useDispatch()
     const loginhandle = async(e) =>{
         e.preventDefault()
