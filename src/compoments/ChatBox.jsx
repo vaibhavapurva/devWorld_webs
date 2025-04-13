@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { createSocketConnection } from "../utils/socket";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ const ChatBox = () => {
   const { targetUserId, userName } = useParams();
   const user = useSelector((state) => state.user);
   const [newMessage, setNewMessage] = useState("");
+  const messagesEndRef = useRef(null);
   const [message, setMessage] = useState([]);
   const userId = user?._id;
   const firstName = user?.firstName;
@@ -54,6 +55,13 @@ const ChatBox = () => {
     });
     setNewMessage("");
   };
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [newMessage, message])
   return (
     <>
       <h1 className="p-5 border-b border-gray-600">Chat Box {targetUserId}</h1>
@@ -76,6 +84,7 @@ const ChatBox = () => {
               </div>
               <div className="chat-bubble">{msg.text}</div>
               {/* <div className="chat-footer opacity-50">Seen</div> */}
+              <div ref={messagesEndRef} />
             </div>
           );
         })}
