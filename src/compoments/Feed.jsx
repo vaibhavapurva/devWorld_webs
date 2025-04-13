@@ -8,7 +8,7 @@ const Feed = () =>{
     const [feed, setFeed] = useState([])
     const feedGet = async() =>{
         try{
-            const res = await axios.get(`${BASE_URL}/user/feed?page=2&limit=3`,{withCredentials: true})
+            const res = await axios.get(`${BASE_URL}/user/feed?page=1&limit=3`,{withCredentials: true})
             console.log("------",res.data.data)
             setFeed(res.data.data)
 

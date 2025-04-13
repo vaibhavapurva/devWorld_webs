@@ -13,6 +13,7 @@ import Connections from "./compoments/Connections";
 // import Request from "./compoments/Request.jsx";
 import Request from "./compoments/Request";
 import Payment from "./compoments/Payment";
+import ChatBox from "./compoments/ChatBox";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/connections" element={<Connections/>}/>
               <Route path="/request" element={<Request/>}/>
               <Route path="/payment" element={<Payment/>}/>
+              <Route path="/chat/:targetUserId/:userName" element={<ChatBox/>}/>
             </Route>
           </Routes>
         </BrowserRouter>
