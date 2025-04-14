@@ -64,43 +64,41 @@ const ChatBox = () => {
   }, [newMessage, message])
   return (
     <>
-      <h1 className="p-5 border-b border-gray-600">Chat Box {targetUserId}</h1>
-    <div className="w-1/2 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col rounded">
-      {/* <h1 className="p-5 border-b border-gray-300">Chat</h1> */}
-      <h1 className="p-5 border-b border-gray-300">{userName}</h1>
-      <div className="flex-1 overflow-scroll p-5">
-        {message.map((msg, index) => {
-          return (
-            <div
-              key={index}
-              className={
-                "chat " +
-                (user.firstName === msg.firstName ? "chat-end" : "chat-start")
-              }
-            >
-              <div className="chat-header">
-                {`${msg.firstName}  ${msg.LastName}`}
-                {/* <time className="text-xs opacity-50"> 2 hours ago</time> */}
-              </div>
-              <div className="chat-bubble">{msg.text}</div>
-              {/* <div className="chat-footer opacity-50">Seen</div> */}
-              <div ref={messagesEndRef} />
-            </div>
-          );
-        })}
-      </div>
-      <div className="p-5 border-t border-gray-300 flex items-center gap-2">
-        <input
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          className="flex-1 border border-gray-300 text-gray-600 rounded p-2"
-        ></input>
-        <button onClick={sendMessage} className="btn btn-secondary">
-          Send
-        </button>
-      </div>
+  <div className="w-full md:w-3/4 max-w-[90%] mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col rounded shadow-md">
+    <h1 className="p-4 text-lg font-semibold border-b border-gray-300 break-words">{userName}</h1>
+
+    <div className="flex-1 overflow-auto p-4 space-y-4">
+      {message.map((msg, index) => (
+        <div
+          key={index}
+          className={
+            "chat " +
+            (user.firstName === msg.firstName ? "chat-end" : "chat-start")
+          }
+        >
+          <div className="chat-header text-sm font-medium text-gray-700">
+            {`${msg.firstName} ${msg.LastName}`}
+          </div>
+          <div className="chat-bubble break-words max-w-[80%]">{msg.text}</div>
+          <div ref={messagesEndRef} />
+        </div>
+      ))}
     </div>
-    </>
+
+    <div className="p-4 border-t border-gray-300 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+      <input
+        value={newMessage}
+        onChange={(e) => setNewMessage(e.target.value)}
+        className="flex-1 border border-gray-300 text-gray-600 rounded p-2"
+        placeholder="Type your message..."
+      />
+      <button onClick={sendMessage} className="btn btn-secondary w-full sm:w-auto">
+        Send
+      </button>
+    </div>
+  </div>
+</>
+
   );
 };
 
